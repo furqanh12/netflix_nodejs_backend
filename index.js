@@ -1,8 +1,10 @@
 require('dotenv').config();
+require('./src/backgroundJobs/cornJobs')
 
 const express = require('express');
 const mongoose = require('mongoose');
-const {router} = require('./src/routes/Auth.routes')
+const AuthRouter = require('./src/routes/Auth.routes').router;
+const MoviesRouter = require('./src/routes/Movies.routes').router;
 var cors = require('cors');
 const { request } = require('express');
 const app = express();
@@ -27,7 +29,9 @@ database.once('connected', () => {
 
 
 app.use(express.json());
-app.use('/api/user',router)
+
+app.use('/api/user',AuthRouter)
+app.use('/api/movies',MoviesRouter)
 
 app.listen(3000, () => {
     console.log(`Server Started at ${3000}`)
