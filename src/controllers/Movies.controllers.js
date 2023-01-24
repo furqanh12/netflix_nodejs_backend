@@ -2,20 +2,18 @@ const { MoviesSchema } = require('../schema/Movies.schema');
 
 class MoviesContorllers{
 
-     insertMovies(){
+    getMovies(){
         return async (req, res) =>{
-            const {movies}=req.body
-            console.log(movies)
-            // movies ?? [].forEach(function(movie) {
-            //     MoviesSchema.find({ id: movie.id }).toArray(function(err, find_movies) {
-            //         if(find_movies.length === 0){
-            //             MoviesSchema.insertOne(movie, function(err, res) {
-            //                 if (err) throw err;
-            //                     console.log('Movie inserted');
-            //             });
-            //         }
-            //     });
-            // });
+            try {
+                const page = req.query?.page ?? 1
+                console.log(page)
+                const limit= page * 20 
+              const movies = await MoviesSchema.find().limit(limit)
+              return res.send({status:'success',result:movies})
+            } catch (error) {
+                res.status(500).send({error,msg:'Internal Server Error'})
+            }
+           
         }
      }
 }

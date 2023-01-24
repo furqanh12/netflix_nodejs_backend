@@ -10,7 +10,6 @@ class AuthControllers{
             try {
                 let token = null;
                 const { email, password } = req.body;
-                console.log("cr===>",email,password)
                 const encryptPassword =md5(password);
                 const find_email = await UserSechema.findOne({email})
                 if(find_email){
@@ -34,7 +33,6 @@ class AuthControllers{
                     message: 'new user add successfuly'
                 })
             } catch (error) {
-                console.log(error)
                 return res.send(error)
                 }
         }
@@ -44,7 +42,6 @@ class AuthControllers{
         return async (req, res) =>{
             try {
                 const { email, password } = req.body
-                console.log(email,password,'===>',req.body)
                 const encryptPassword = md5(password)
                 const user = await UserSechema.findOne({email:email, password: encryptPassword})
                 if(!user){
@@ -57,7 +54,6 @@ class AuthControllers{
                     }
 
             } catch (error) {
-                console.log(error)
                 res.status(error.response.status).json(error.response.data)
             }
         }
@@ -81,7 +77,6 @@ class AuthControllers{
                     user,
                 })
             } catch (error) {
-                console.log(error)
                 return res.send(error)
             }
         }

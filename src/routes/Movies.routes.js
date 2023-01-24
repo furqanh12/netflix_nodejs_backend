@@ -5,6 +5,6 @@ const router = express.Router();
 
 const movies = new MoviesContorllers
 
-router.post('/insert_to_db',movies.insertMovies())
+router.get('/get_movies',movies.getMovies())
 
 exports.router = router;
