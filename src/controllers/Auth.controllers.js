@@ -43,7 +43,7 @@ class AuthControllers{
             try {
                 const { email, password } = req.body
                 const encryptPassword = md5(password)
-                const user = await UserSechema.findOne({email:email, password: encryptPassword})
+                const user = await UserSechema.findOne({email:email, password: encryptPassword}).populate('fav_movies')
                 if(!user){
                     return res.status(401).send('Invalid Email or Password')
                 }else{
@@ -54,7 +54,7 @@ class AuthControllers{
                     }
 
             } catch (error) {
-                res.status(error.response.status).json(error.response.data)
+                res.status(500).json({error})
             }
         }
     }

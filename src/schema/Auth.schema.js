@@ -6,6 +6,10 @@ const UserModel = new mongoose.Schema({
     password: { type: String, require: true },
     plan: { type: String, enum: ['mobile', 'basic', 'standard', 'premmium',null], default: null },
     plan_expire: { type: Date, default: null },
+    fav_movies:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref: 'movies',default:[]
+    }]
 },
     {timestamps: true}
 ) 
