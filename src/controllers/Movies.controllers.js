@@ -53,5 +53,15 @@ class MoviesContorllers {
             }
         }
     }
+
+    getMovies(){
+        return async (req, res) =>{
+            try {
+                
+            } catch (error) {
+                
+            }
+        }
+    }
 }
 exports.MoviesContorllers = MoviesContorllers;
