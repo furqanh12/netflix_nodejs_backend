@@ -42,9 +42,9 @@ class MoviesContorllers {
     removeMovies() {
         return async (req, res) => {
             try {
-                const { movie_id } = req.body
+                const { movieId } = req.body
                 await UserSechema.updateOne({ _id: req.user_id }, {
-                    $pull: { fav_movies: movie_id }
+                    $pull: { fav_movies: movieId }
                 })
                 const user = await UserSechema.findById(req.user_id).populate('fav_movies')
                 res.send({ user })
@@ -59,6 +59,7 @@ class MoviesContorllers {
     getFavMovies(){
         return async (req, res) =>{
             try {
+                console.log("fav")
                 const {fav_movies} = await UserSechema.findById(req.user_id).populate('fav_movies')
                 res.send(fav_movies)
             } catch (error) {

@@ -32,6 +32,9 @@ app.use(express.json());
 
 app.use('/api/user',AuthRouter)
 app.use('/api/movies',MoviesRouter)
+app.all('*',(req,res)=>{
+    res.send('not found any route ')
+})
 
 app.listen(3000, () => {
     console.log(`Server Started at ${3000}`)

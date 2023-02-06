@@ -11,4 +11,5 @@ router.post('/add_fav',AuthToken(),movies.favMovies())
 router.post('/remove_fav',AuthToken(),movies.removeMovies())
 router.get('/get_fav',AuthToken(),movies.getFavMovies())
 
+
 exports.router = router;
