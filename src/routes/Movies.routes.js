@@ -10,6 +10,9 @@ router.get('/get_movies',movies.getMovies())
 router.post('/add_fav',AuthToken(),movies.favMovies())
 router.post('/remove_fav',AuthToken(),movies.removeMovies())
 router.get('/get_fav',AuthToken(),movies.getFavMovies())
+router.post('/add_to_liked_movies',AuthToken(),movies.addToLikedMovies())
+router.get('/get_liked_movies',AuthToken(),movies.getLikedMovies())
+router.post('/remove_like_movie',AuthToken(),movies.removeLikeMovie())
 
 
 exports.router = router;

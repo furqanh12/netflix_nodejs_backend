@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const joi = require("joi");
 
 const UserModel = new mongoose.Schema({
     email: { type: String, require: true, lowercase: true, unique: true },
@@ -7,6 +6,10 @@ const UserModel = new mongoose.Schema({
     plan: { type: String, enum: ['mobile', 'basic', 'standard', 'premmium',null], default: null },
     plan_expire: { type: Date, default: null },
     fav_movies:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref: 'movies',default:[]
+    }],
+    like_movies:[{
         type:mongoose.Schema.Types.ObjectId,
         ref: 'movies',default:[]
     }]

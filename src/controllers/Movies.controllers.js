@@ -24,7 +24,6 @@ class MoviesContorllers {
         return async (req, res) => {
             try {
                 const { movie_id } = req.body
-                console.log(typeof movie_id, req.user_id)
                 if (movie_id && req.user_id) {
                     await UserSechema.findOneAndUpdate({ _id: req.user_id }, {
                         $addToSet: { fav_movies: movie_id }
@@ -59,9 +58,56 @@ class MoviesContorllers {
     getFavMovies(){
         return async (req, res) =>{
             try {
-                console.log("fav")
                 const {fav_movies} = await UserSechema.findById(req.user_id).populate('fav_movies')
                 res.send(fav_movies)
+            } catch (error) {
+                console.log(error)
+                res.send(error)
+            }
+        }
+    }
+
+
+    addToLikedMovies(){
+        return async (req ,res) =>{
+            try {
+                const { movieId } = req.body
+                if (movieId && req.user_id) {
+                    await UserSechema.findOneAndUpdate({ _id: req.user_id }, {
+                        $addToSet: { like_movies: movieId }
+                    })
+                    const user = await UserSechema.findById(req.user_id).populate('like_movies')
+                    res.send({ status: 'success', user })
+                }
+
+            } catch (error) {
+                console.log(error)
+                res.send(error)
+            }
+        }
+    }
+
+    getLikedMovies(){
+        return async (req, res) => {
+            try {
+                const { like_movies } = await UserSechema.findById(req.user_id).populate('like_movies')
+                res.send(like_movies)
+            } catch (error) {
+                console.log(error)
+                res.send(error)
+            }
+        } 
+    }
+
+    removeLikeMovie(){
+        return async (req, res) => {
+            try {
+                const { movieId } = req.body
+                await UserSechema.updateOne({ _id: req.user_id }, {
+                    $pull: { like_movies: movieId }
+                })
+                const user = await UserSechema.findById(req.user_id).populate('like_movies')
+                res.send({ user })
             } catch (error) {
                 console.log(error)
                 res.send(error)
