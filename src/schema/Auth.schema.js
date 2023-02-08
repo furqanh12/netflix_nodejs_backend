@@ -1,3 +1,4 @@
+const { string } = require('joi');
 const mongoose = require('mongoose');
 
 const UserModel = new mongoose.Schema({
@@ -12,7 +13,24 @@ const UserModel = new mongoose.Schema({
     like_movies:[{
         type:mongoose.Schema.Types.ObjectId,
         ref: 'movies',default:[]
-    }]
+    }],
+    notifications: [{
+            message:{
+                type:String,
+                require:true,
+            },
+            movieId:{
+               type:mongoose.Schema.Types.ObjectId,
+               ref:'movies',
+               default:[]
+            },
+            date:{
+                type:Date,
+                default:new Date(),
+            }
+          
+        }]
+    
 },
     {timestamps: true}
 ) 

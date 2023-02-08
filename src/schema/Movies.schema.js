@@ -10,13 +10,23 @@ const MoviesModel = new mongoose.Schema({
     overview:{type:String},
     release_date:{type:String},
     vote_average:{type:Number},
-    title: {type:String},
+    title: {type:String,unique: true,},
     backdrop_path:{type:String},
     genre_ids:{type:Array},
     popularity:{type:Number},
     poster_path:{type:String},
     video:{type:Boolean},
-    vote_count:{type:Number}
+    vote_count:{type:Number},
+    up_coming:{
+        type:Boolean,
+        default:false
+    },
+    notifiedUsers: [{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'users',
+        default:[]
+    }
+  ]
 },
     {timestamps: true}
 ) 

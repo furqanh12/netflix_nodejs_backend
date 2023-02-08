@@ -6,11 +6,8 @@ class MoviesContorllers {
     getMovies() {
         return async (req, res) => {
             try {
-                const page = req.query?.page ?? 1
-                console.log(page)
-                const limit = page * 20
+                const limit = 50
                 const movies = await MoviesSchema.find().limit(limit)
-                console.log('mov',movies)
                 return res.send({ status: 'success', result: movies })
             } catch (error) {
                 console.log(error)
@@ -111,6 +108,19 @@ class MoviesContorllers {
             } catch (error) {
                 console.log(error)
                 res.send(error)
+            }
+        }
+    }
+
+    upComingMovies(){
+        return async (req, res) =>{
+            try {
+                const limit = 50
+                const up_coming_movies = await MoviesSchema.find({up_coming:true}).limit(limit)
+                return res.send({ status: 'success', result: up_coming_movies })
+            } catch (error) {
+                res.send(error)
+                console.log(error)
             }
         }
     }
