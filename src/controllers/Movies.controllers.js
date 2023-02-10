@@ -124,5 +124,25 @@ class MoviesContorllers {
             }
         }
     }
+
+    setReminder(){
+        return async (req, res) => {
+            try {
+                const { movieId } = req.body
+                if (movieId && req.user_id) {
+                    const user_id = req.user_id
+                    await MoviesSchema.findOneAndUpdate({ _id: movieId }, {
+                        $addToSet: { notifiedUsers: user_id }
+                    })
+                   
+                    res.send({status:'success'})
+                }
+
+            } catch (error) {
+                res.send(error)
+                console.log(error)
+            }
+        }
+    }
 }
 exports.MoviesContorllers = MoviesContorllers;

@@ -17,12 +17,12 @@ const UserModel = new mongoose.Schema({
     notifications: [{
             message:{
                 type:String,
-                require:true,
+                default:''
             },
             movieId:{
                type:mongoose.Schema.Types.ObjectId,
                ref:'movies',
-               default:[]
+               require:true
             },
             date:{
                 type:Date,

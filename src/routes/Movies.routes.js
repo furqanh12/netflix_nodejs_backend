@@ -14,6 +14,7 @@ router.post('/add_to_liked_movies',AuthToken(),movies.addToLikedMovies())
 router.get('/get_liked_movies',AuthToken(),movies.getLikedMovies())
 router.post('/remove_like_movie',AuthToken(),movies.removeLikeMovie())
 router.get('/up_comings',AuthToken(),movies.upComingMovies())
+router.post('/set_movie_reminder',AuthToken(),movies.setReminder())
 
 
 exports.router = router;
