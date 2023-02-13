@@ -8,8 +8,12 @@ const mongoose = require('mongoose');
 const AuthRouter = require('./src/routes/Auth.routes').router;
 const MoviesRouter = require('./src/routes/Movies.routes').router;
 var cors = require('cors');
-const { request } = require('express');
 const app = express();
+const http = require('http');
+const server = http.createServer(app)
+const { Server } = require('socket.io');
+const io = new Server(server, { cors: { origin: '*' } });
+
 
 app.use(cors())
 
@@ -38,6 +42,12 @@ app.all('*',(req,res)=>{
     res.send('not found any route ')
 })
 
-app.listen(3000, () => {
+io.on('connection', (socket) => {
+    console.log('A user connected');
+    
+  socket.emit('new-movie', { title: 'The Matrix' });
+});
+
+server.listen(3000, () => {
     console.log(`Server Started at ${3000}`)
 })

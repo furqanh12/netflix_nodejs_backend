@@ -3,7 +3,7 @@ const cron = require('node-cron');
 const { UserSechema } = require('../schema/Auth.schema');
 const { MoviesSchema } = require('../schema/Movies.schema');
 
-cron.schedule('* * * * *', async () => {
+cron.schedule('0 0 * * *', async () => {
     try {
             // const today = moment(new Date()).format('YYYY-MM-DD') ;
             const today = '2023-02-17'
@@ -15,7 +15,7 @@ cron.schedule('* * * * *', async () => {
                 console.log(userID)
                 await UserSechema.findOneAndUpdate({ _id:userID },{
                     $addToSet:{ notifications : {
-                        message:`${movie.title} is ready to watch`,
+                        message:`${movie.title} is released and ready to watch`,
                         movieId:movie._id,
                     }}
                 });
