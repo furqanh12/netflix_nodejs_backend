@@ -14,6 +14,7 @@ const server = http.createServer(app)
 const { Server } = require('socket.io');
 const io = new Server(server, { cors: { origin: '*' } });
 
+const PORT = process.env.PORT || 3000;
 
 app.use(cors())
 
@@ -44,10 +45,14 @@ app.all('*',(req,res)=>{
 
 io.on('connection', (socket) => {
     console.log('A user connected');
-    
-  socket.emit('new-movie', { title: 'The Matrix' });
+    // socket.emit('new release movie notification',{title:'The Lion King'});
+    socket.on('disconnect', () => {
+    console.log('user disconnected');
+    });
 });
 
-server.listen(3000, () => {
-    console.log(`Server Started at ${3000}`)
+server.listen(PORT, () => {
+    console.log(`Server Started at ${PORT}`)
 })
+
+module.exports = { io };
