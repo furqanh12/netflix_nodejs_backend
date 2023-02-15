@@ -1,7 +1,6 @@
 require('dotenv').config();
 require('./src/backgroundJobs/getMovies.cornJobs')
 require('./src/backgroundJobs/upComing.cornJobs')
-require('./src/backgroundJobs/reminderNotfiy.cornJobs')
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -12,7 +11,10 @@ const app = express();
 const http = require('http');
 const server = http.createServer(app)
 const { Server } = require('socket.io');
+const socketConnection = require('./src/backgroundJobs/reminderNotfiy.cornJobs');
 const io = new Server(server, { cors: { origin: '*' } });
+
+socketConnection(io);
 
 const PORT = process.env.PORT || 3000;
 
@@ -43,16 +45,10 @@ app.all('*',(req,res)=>{
     res.send('not found any route ')
 })
 
-io.on('connection', (socket) => {
-    console.log('A user connected');
-    // socket.emit('new release movie notification',{title:'The Lion King'});
-    socket.on('disconnect', () => {
-    console.log('user disconnected');
-    });
-});
+
 
 server.listen(PORT, () => {
     console.log(`Server Started at ${PORT}`)
 })
 
-module.exports = { io };
+// module.exports =  {io} ;
