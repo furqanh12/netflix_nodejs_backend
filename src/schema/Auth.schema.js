@@ -19,7 +19,7 @@ const UserModel = new mongoose.Schema({
                 type:String,
                 default:''
             },
-            movieId:{
+            movie:{
                type:mongoose.Schema.Types.ObjectId,
                ref:'movies',
                require:true
@@ -27,6 +27,10 @@ const UserModel = new mongoose.Schema({
             date:{
                 type:Date,
                 default:new Date(),
+            },
+            mark_as_read:{
+                type: Boolean,
+                default: false
             }
           
         }]

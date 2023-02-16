@@ -4,8 +4,10 @@ require('./src/backgroundJobs/upComing.cornJobs')
 
 const express = require('express');
 const mongoose = require('mongoose');
-const AuthRouter = require('./src/routes/Auth.routes').router;
-const MoviesRouter = require('./src/routes/Movies.routes').router;
+const { router: AuthRouter } = require('./src/routes/Auth.routes');
+const { router: MoviesRouter } = require('./src/routes/Movies.routes');
+const { router: NotificationRouter } = require('./src/routes/Notification.routes');
+
 var cors = require('cors');
 const app = express();
 const http = require('http');
@@ -39,9 +41,10 @@ database.once('connected', () => {
 
 app.use(express.json());
 
-app.use('/api/user',AuthRouter)
-app.use('/api/movies',MoviesRouter)
-app.all('*',(req,res)=>{
+app.use('/api/user', AuthRouter)
+app.use('/api/movies', MoviesRouter)
+app.use('/api/notifications', NotificationRouter)
+app.all('*', (req, res) => {
     res.send('not found any route ')
 })
 
