@@ -1,9 +1,8 @@
-const { boolean, number, string } = require('joi');
 const mongoose = require('mongoose');
 
 const MoviesModel = new mongoose.Schema({
     adult:{type: Boolean},
-    id:{type:Number},
+    id:{type:Number, unique:true},
     img:{type:String},
     original_language:{type:String},
     original_title:{type:String},
@@ -17,6 +16,11 @@ const MoviesModel = new mongoose.Schema({
     poster_path:{type:String},
     video:{type:Boolean},
     vote_count:{type:Number},
+    media_type:{
+        type: String,
+        enum: ['Movie','TvShow'],
+        default: false
+    },
     up_coming:{
         type:Boolean,
         default:false

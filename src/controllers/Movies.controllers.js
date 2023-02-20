@@ -17,6 +17,20 @@ class MoviesContorllers {
         }
     }
 
+    getTvShows() {
+        return async (req, res) => {
+            try {
+                const limit = 50
+                const tvShows = await MoviesSchema.find({ media_type: 'TvShow' }).limit(limit)
+                return res.send({ status: 'success', result: tvShows })
+            } catch (error) {
+                console.log(error)
+                res.status(500).send({ error, msg: 'Internal Server Error' })
+            }
+
+        }
+    }
+
     favMovies() {
         return async (req, res) => {
             try {
