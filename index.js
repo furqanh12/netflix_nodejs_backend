@@ -1,6 +1,7 @@
 require('dotenv').config();
 require('./src/backgroundJobs/getMovies.cornJobs')
 require('./src/backgroundJobs/upComing.cornJobs')
+require('./src/backgroundJobs/getTvShows.cronJobs')
 
 const express = require('express');
 const mongoose = require('mongoose');
