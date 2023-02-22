@@ -7,6 +7,7 @@ const router = express.Router();
 const movies = new MoviesContorllers
 
 router.get('/get_movies',movies.getMovies())
+router.get('/search_media',movies.searchMedia())
 router.get('/get_tvshows',movies.getTvShows())
 router.post('/add_fav',AuthToken(),movies.favMovies())
 router.post('/remove_fav',AuthToken(),movies.removeMovies())
