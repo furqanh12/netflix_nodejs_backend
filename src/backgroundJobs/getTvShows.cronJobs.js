@@ -3,7 +3,7 @@ const axios = require('axios');
 const {MoviesSchema} = require('../schema/Movies.schema');
 
 cron.schedule(
-  '0 0 * * *',
+  '* * * * *',
   async () => {
     try {
       const response = await axios.get(
