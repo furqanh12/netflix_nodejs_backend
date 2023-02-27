@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const { router: AuthRouter } = require('./src/routes/Auth.routes');
 const { router: MoviesRouter } = require('./src/routes/Movies.routes');
 const { router: NotificationRouter } = require('./src/routes/Notification.routes');
+const { router: AccountSettingRouter } = require('./src/routes/AccountSetting.routes');
 
 var cors = require('cors');
 const app = express();
@@ -45,6 +46,7 @@ app.use(express.json());
 app.use('/api/user', AuthRouter)
 app.use('/api/movies', MoviesRouter)
 app.use('/api/notifications', NotificationRouter)
+app.use('/api/account_setting',AccountSettingRouter)
 app.all('*', (req, res) => {
     res.send('not found any route ')
 })

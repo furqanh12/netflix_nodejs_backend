@@ -3,7 +3,7 @@ const cron = require('node-cron');
 const axios = require('axios');
 const {MoviesSchema} = require('../schema/Movies.schema')
 
- cron.schedule('* * * * *', async () => {
+ cron.schedule('0 0 * * *', async () => {
     try {
 
           const upcoming = await axios.get(`https://api.themoviedb.org/3/movie/upcoming?api_key=87dfa1c669eea853da609d4968d294be&language=en-us`);
