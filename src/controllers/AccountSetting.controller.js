@@ -3,6 +3,19 @@ const { UserSechema } = require("../schema/Auth.schema");
 
 class AccountSettingController {
 
+    getUserDetails(){
+        return async (req, res) => {
+            try {
+                const userId = req.user_id
+                const user = await UserSechema.findById({_id:userId})
+                res.status(200).send({ message: 'User Details',user});
+            } catch (error) {
+                console.log(error);
+                res.send(error)
+            }
+        }
+    }
+
     changeUsername(){
         return async (req, res) => {
             try {

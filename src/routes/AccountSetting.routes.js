@@ -6,6 +6,7 @@ const router = express.Router();
 
 const accountSetting = new AccountSettingController;
 
+router.get('/user_details',AuthToken(),accountSetting.getUserDetails())
 router.post('/change_username',AuthToken(),accountSetting.changeUsername())
 
 exports.router = router;
