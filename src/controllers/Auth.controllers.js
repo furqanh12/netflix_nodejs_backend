@@ -50,13 +50,6 @@ class AuthControllers {
                     const jwtSecretKey = process.env.JWT_SECRET_KEY
                     const { _id } = user
                     const token = jwt.sign({ id: _id }, jwtSecretKey)
-                    console.log(user)
-                    // const { fav_movies, plan, plan_expire } = user
-                    // const data = {
-                    //     fav_movies,
-                    //     plan,
-                    //     plan_expire
-                    // }
                     return res.send({ status: 'success', token, user })
                 }
 
@@ -78,7 +71,6 @@ class AuthControllers {
                     plan_expire,
                 })
                 user = await UserSechema.findById(user_id)
-                console.log("u", user)
                 return res.send({
                     status: 'success',
                     user,

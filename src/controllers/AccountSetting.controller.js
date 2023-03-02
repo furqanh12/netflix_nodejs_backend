@@ -10,7 +10,6 @@ class AccountSettingController {
                 const user = await UserSechema.findById({_id:userId})
                 res.status(200).send({ message: 'User Details',user});
             } catch (error) {
-                console.log(error);
                 res.send(error)
             }
         }
@@ -24,7 +23,6 @@ class AccountSettingController {
                 const user = await  UserSechema.findByIdAndUpdate({ _id: userId }, { email: nameChange }, { new: true })
                 res.status(200).send({ message: 'Username updated successfully',user});
             } catch (error) {
-                console.log(error);
                 res.status(500).send({ error: 'Could not update username' });
             }
         }

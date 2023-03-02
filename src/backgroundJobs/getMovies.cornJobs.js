@@ -11,14 +11,8 @@ const {MoviesSchema} = require('../schema/Movies.schema')
           poster_path:`https://image.tmdb.org/t/p/w500${item?.poster_path}`,
           media_type:'Movie'
         }})
-          MoviesSchema.create(movies, function(err, res) {
-            if (err) {
-              console.error(err);
-            } else {
-              console.log("Movie inserted");
-            }
-          });
+          MoviesSchema.create(movies);
       } catch (error) {
-        console.log(error);
+        return error
       }
     },{scheduled:true});

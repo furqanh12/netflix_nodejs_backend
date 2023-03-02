@@ -9,7 +9,6 @@ class MoviesContorllers {
         const movies = await MoviesSchema.find().limit(limit);
         return res.send({status: 'success', result: movies});
       } catch (error) {
-        console.log(error);
         res.status(500).send({error, msg: 'Internal Server Error'});
       }
     };
@@ -24,7 +23,6 @@ class MoviesContorllers {
         );
         return res.send({status: 'success', result: tvShows});
       } catch (error) {
-        console.log(error);
         res.status(500).send({error, msg: 'Internal Server Error'});
       }
     };
@@ -61,7 +59,6 @@ class MoviesContorllers {
           res.send({status: 'success', user});
         }
       } catch (error) {
-        console.log(error);
         return res.send(error);
       }
     };
@@ -82,7 +79,6 @@ class MoviesContorllers {
         );
         res.send({user});
       } catch (error) {
-        console.log(error);
         res.send(error);
       }
     };
@@ -96,7 +92,6 @@ class MoviesContorllers {
         );
         res.send(fav_movies);
       } catch (error) {
-        console.log(error);
         res.send(error);
       }
     };
@@ -119,7 +114,6 @@ class MoviesContorllers {
           res.send({status: 'success', user});
         }
       } catch (error) {
-        console.log(error);
         res.send(error);
       }
     };
@@ -133,7 +127,6 @@ class MoviesContorllers {
         );
         res.send(like_movies);
       } catch (error) {
-        console.log(error);
         res.send(error);
       }
     };
@@ -154,7 +147,6 @@ class MoviesContorllers {
         );
         res.send({user});
       } catch (error) {
-        console.log(error);
         res.send(error);
       }
     };
@@ -170,7 +162,6 @@ class MoviesContorllers {
         return res.send({status: 'success', result: up_coming_movies});
       } catch (error) {
         res.send(error);
-        console.log(error);
       }
     };
   }
@@ -192,7 +183,6 @@ class MoviesContorllers {
         }
       } catch (error) {
         res.send(error);
-        console.log(error);
       }
     };
   }

@@ -17,17 +17,10 @@ const {MoviesSchema} = require('../schema/Movies.schema')
           }
         }).filter(item => moment(item.release_date, "YYYY-MM-DD").isAfter(moment('2023-03-01', "YYYY-MM-DD")));
         up_coming_movies.forEach(async function(movie) {
-            MoviesSchema.create(movie,function(err,res){
-              if(err){
-                  console.log(err)
-              }
-              if(res){
-                  console.log('movie inserted')
-              }
-            }) 
+            MoviesSchema.create(movie) 
           }) 
         }        
        catch (error) {
-        console.log(error);
+        return error
       }
     },{scheduled:true});

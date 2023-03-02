@@ -11,7 +11,7 @@ const AuthToken=()=>{
          req.user_id=id
          return next()
     } catch (error) {
-        console.log(error)
+        return error
     }
 } 
 }

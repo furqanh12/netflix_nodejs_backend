@@ -6,13 +6,11 @@ const {MoviesSchema} = require('../schema/Movies.schema');
 const socketConnection = io => {
   io.on('connection', socket => {
     socket.emit('socket connection', 'user connected');
-    console.log('user connected');
     cron.schedule(
       '0 0 * * *',
       async () => {
         try {
-          // const today = moment(new Date()).format('YYYY-MM-DD') ;
-          const today = '2023-03-10'
+          const today = moment(new Date()).format('YYYY-MM-DD') ;
           const movies = await MoviesSchema.find({release_date: today});
           movies.forEach(async movie => {
             const notifiedUsers = movie.notifiedUsers ?? [];
@@ -40,7 +38,7 @@ const socketConnection = io => {
             }
           });
         } catch (error) {
-          console.log(error);
+          return error
         }
       },
       {scheduled: true},

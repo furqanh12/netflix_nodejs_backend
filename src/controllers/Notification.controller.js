@@ -15,7 +15,6 @@ class NotificationsController{
                     }
             } catch (error) {
                 res.send(error)
-                console.log(error)
             }
         }
     }
@@ -39,10 +38,8 @@ class NotificationsController{
                   $set: { 'notifications.$.mark_as_read': true }
                 }
               );
-              console.log(user);
               res.send(user)
             } catch (error) {
-                console.log(error);
                 res.send(error)
             }
         }

@@ -26,16 +26,10 @@ cron.schedule(
 
         };
       });
-      MoviesSchema.create(tvShows, function (err, res) {
-        if (err) {
-          console.error(err);
-        } else {
-          console.log('tvShow inserted');
-        }
-      });
+      MoviesSchema.create(tvShows);
 
     } catch (error) {
-      console.log(error);
+      return error
     }
   },
   {scheduled: true},
